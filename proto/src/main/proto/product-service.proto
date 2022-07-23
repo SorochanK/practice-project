@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.vinsguru.proto;
+
+option java_multiple_files = true;
+option java_package = "com.vinsguru.productservice.grpc.dto";
+
+message ProductDto {
+    string id = 1;
+    string description = 2;
+    int32 price = 3;
+}
+
+message Id {
+    string id = 1;
+}
+
+service ProductService {
+    rpc getProductById(Id) returns (ProductDto) {};
+}

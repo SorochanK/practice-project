@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.vinsguru.proto;
+
+option java_multiple_files = true;
+option java_package = "com.vinsguru.userservice.grpc.dto";
+
+message UserDto {
+    int32 id = 1;
+    string name = 2;
+    int32 balance = 3;
+}
+
+message TransactionRequestDto {
+    int32 user_id = 1;
+    int32 amount = 2;
+}
+
+message TransactionResponseDto {
+    int32 user_id = 1;
+    int32 amount = 2;
+    TransactionStatus status = 3;
+}
+
+enum TransactionStatus {
+    APPROVED = 0;
+    DECLINED = 1;
+}
+
+service TransactionService {
+    rpc createTransaction(TransactionRequestDto) returns(TransactionResponseDto) {};
+}
